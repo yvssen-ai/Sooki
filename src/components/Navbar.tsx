@@ -66,6 +66,13 @@ export default function Navbar() {
         </nav>
 
         <div className="flex items-center gap-4 text-foreground sm:gap-5">
+          <Link
+            href="/design"
+            data-cursor="link"
+            className="hidden shrink-0 items-center rounded-full border border-gold/40 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-gold transition-all hover:border-gold hover:bg-gold/10 sm:inline-flex"
+          >
+            Design Yours
+          </Link>
           <button data-cursor="link" aria-label="Search" className="hidden transition-colors hover:text-gold sm:block">
             <Search className="h-[18px] w-[18px]" />
           </button>
@@ -125,6 +132,21 @@ export default function Navbar() {
                 </motion.div>
               ))}
             </nav>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              className="mt-10"
+            >
+              <Link
+                href="/design"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="flex items-center justify-center rounded-full border border-gold/40 py-4 text-xs font-semibold uppercase tracking-[0.25em] text-gold transition-all hover:bg-gold/10"
+              >
+                Design Yours
+              </Link>
+            </motion.div>
 
             <motion.div
               initial={{ opacity: 0 }}
