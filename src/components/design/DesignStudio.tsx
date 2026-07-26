@@ -1,8 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { motion, Reorder } from "framer-motion";
-import { RotateCcw, Trash2, ShoppingBag, ArrowLeft, GripVertical, X } from "lucide-react";
+import { motion, AnimatePresence, Reorder } from "framer-motion";
+import { RotateCcw, Trash2, ShoppingBag, ArrowLeft, ArrowRight, Check, GripVertical, X } from "lucide-react";
 import Link from "next/link";
 import NecklaceCanvas from "@/components/design/NecklaceCanvas";
 import MagneticButton from "@/components/MagneticButton";
@@ -30,10 +30,21 @@ const CHARM_ICONS: Record<CharmIconId, typeof AnkhIcon> = {
   falcon: FalconIcon,
 };
 
+const STEPS = [
+  { title: "Choose Your Chain", subtitle: "Pick the foundation of your necklace." },
+  { title: "Add Charms", subtitle: "Place meaningful symbols along the chain." },
+  { title: "Add Beads", subtitle: "Finish with color and texture." },
+] as const;
+
 export default function DesignStudio() {
   const [chainId, setChainId] = useState<ChainId>("gold");
   const [items, setItems] = useState<PlacedItem[]>([]);
+  const [step, setStep] = useState(0);
   const { toast } = useToast();
+
+  const isLastStep = step === STEPS.length - 1;
+  const goNext = () => setStep((s) => Math.min(s + 1, STEPS.length - 1));
+  const goBack = () => setStep((s) => Math.max(s - 1, 0));
 
   const chain = CHAIN_STYLES.find((c) => c.id === chainId)!;
 
@@ -91,8 +102,8 @@ export default function DesignStudio() {
             <RevealText text="LEGACY" className="block text-gold" delay={0.15} />
           </h1>
           <p className="mx-auto mt-6 max-w-lg text-balance text-sm leading-relaxed text-muted-foreground sm:text-base">
-            Choose a chain, then click charms and beads to build a necklace that&rsquo;s entirely yours. Drag a piece
-            in the list below to reorder it, or click it on the chain to remove it.
+            Follow the steps below to build a necklace that&rsquo;s entirely yours — the preview updates live as you
+            go. Drag a piece in the list to reorder it, or click it on the chain to remove it.
           </p>
         </motion.div>
 
@@ -196,87 +207,194 @@ export default function DesignStudio() {
             </MagneticButton>
           </motion.div>
 
-          {/* Materials */}
+          {/* Steps */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.7, delay: 0.15 }}
-            className="space-y-10 lg:min-w-0 lg:flex-1"
+            className="lg:min-w-0 lg:flex-1"
           >
-            <div>
-              <h3 className="mb-4 text-[11px] font-semibold uppercase tracking-[0.25em] text-gold">1. Choose Your Chain</h3>
-              <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-                {CHAIN_STYLES.map((c) => (
+            {/* Step indicator */}
+            <div className="relative mb-10">
+              <div className="absolute left-0 right-0 top-4 h-px bg-gold/15" />
+              <div
+                className="absolute left-0 top-4 h-px bg-gold/60 transition-all duration-500"
+                style={{ width: `${(step / (STEPS.length - 1)) * 100}%` }}
+              />
+              <div className="relative grid grid-cols-3">
+                {STEPS.map((s, i) => (
                   <button
-                    key={c.id}
-                    onClick={() => setChainId(c.id)}
+                    key={s.title}
+                    onClick={() => setStep(i)}
                     data-cursor="link"
-                    className={cn(
-                      "flex flex-col items-center gap-2 rounded-xl border p-3 transition-all",
-                      chainId === c.id ? "border-gold bg-gold/10" : "border-gold/15 hover:border-gold/40"
-                    )}
+                    className="flex flex-col items-center gap-2"
                   >
                     <span
-                      className="h-6 w-6 rounded-full border border-black/30"
-                      style={{ backgroundColor: c.color }}
-                    />
-                    <span className="text-center text-[10px] uppercase tracking-wide text-foreground/90">{c.name}</span>
-                    <span className="text-[10px] text-gold/80">{c.priceModifier > 0 ? `+$${c.priceModifier}` : "Included"}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <h3 className="mb-4 text-[11px] font-semibold uppercase tracking-[0.25em] text-gold">2. Add Charms</h3>
-              <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-                {CHARMS.map((material) => {
-                  const Icon = CHARM_ICONS[material.render as CharmIconId];
-                  return (
-                    <button
-                      key={material.id}
-                      onClick={() => addMaterial(material)}
-                      disabled={isFull}
-                      data-cursor="link"
-                      className="flex flex-col items-center gap-2 rounded-xl border border-gold/15 p-3 transition-all hover:border-gold/50 hover:bg-gold/5 disabled:cursor-not-allowed disabled:opacity-30"
+                      className={cn(
+                        "flex h-8 w-8 items-center justify-center rounded-full border bg-black text-xs font-semibold transition-all",
+                        i === step
+                          ? "border-gold bg-gold text-black"
+                          : i < step
+                            ? "border-gold text-gold"
+                            : "border-gold/20 text-muted-foreground/50"
+                      )}
                     >
-                      <Icon className="h-7 w-7 text-gold" />
-                      <span className="text-center text-[10px] uppercase tracking-wide text-foreground/90">{material.name}</span>
-                      <span className="text-[10px] text-gold/80">+${material.price}</span>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
-            <div>
-              <h3 className="mb-4 text-[11px] font-semibold uppercase tracking-[0.25em] text-gold">3. Add Beads</h3>
-              <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-                {BEADS.map((material) => (
-                  <button
-                    key={material.id}
-                    onClick={() => addMaterial(material)}
-                    disabled={isFull}
-                    data-cursor="link"
-                    className="flex flex-col items-center gap-2 rounded-xl border border-gold/15 p-3 transition-all hover:border-gold/50 hover:bg-gold/5 disabled:cursor-not-allowed disabled:opacity-30"
-                  >
+                      {i < step ? <Check className="h-3.5 w-3.5" /> : i + 1}
+                    </span>
                     <span
-                      className="h-7 w-7 rounded-full border border-black/30"
-                      style={{ backgroundColor: BEAD_COLORS[material.render as keyof typeof BEAD_COLORS] }}
-                    />
-                    <span className="text-center text-[10px] uppercase tracking-wide text-foreground/90">{material.name}</span>
-                    <span className="text-[10px] text-gold/80">+${material.price}</span>
+                      className={cn(
+                        "text-center text-[9px] font-semibold uppercase tracking-[0.1em] sm:text-[10px]",
+                        i === step ? "text-gold" : i < step ? "text-gold/70" : "text-muted-foreground/50"
+                      )}
+                    >
+                      {s.title}
+                    </span>
                   </button>
                 ))}
               </div>
             </div>
 
-            {isFull && (
-              <p className="text-center text-xs text-gold/70">
-                Your necklace is at its finest — {MAX_PLACED_ITEMS} pieces. Remove one to add another.
-              </p>
-            )}
+            <AnimatePresence mode="wait">
+              {step === 0 && (
+                <motion.div
+                  key="chain"
+                  initial={{ opacity: 0, x: 16 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -16 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <h3 className="mb-1 text-[11px] font-semibold uppercase tracking-[0.25em] text-gold">
+                    Step 1 &middot; {STEPS[0].title}
+                  </h3>
+                  <p className="mb-4 text-xs text-muted-foreground">{STEPS[0].subtitle}</p>
+                  <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+                    {CHAIN_STYLES.map((c) => (
+                      <button
+                        key={c.id}
+                        onClick={() => setChainId(c.id)}
+                        data-cursor="link"
+                        className={cn(
+                          "flex flex-col items-center gap-2 rounded-xl border p-3 transition-all",
+                          chainId === c.id ? "border-gold bg-gold/10" : "border-gold/15 hover:border-gold/40"
+                        )}
+                      >
+                        <span
+                          className="h-6 w-6 rounded-full border border-black/30"
+                          style={{ backgroundColor: c.color }}
+                        />
+                        <span className="text-center text-[10px] uppercase tracking-wide text-foreground/90">{c.name}</span>
+                        <span className="text-[10px] text-gold/80">
+                          {c.priceModifier > 0 ? `+$${c.priceModifier}` : "Included"}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+
+              {step === 1 && (
+                <motion.div
+                  key="charms"
+                  initial={{ opacity: 0, x: 16 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -16 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <h3 className="mb-1 text-[11px] font-semibold uppercase tracking-[0.25em] text-gold">
+                    Step 2 &middot; {STEPS[1].title}
+                  </h3>
+                  <p className="mb-4 text-xs text-muted-foreground">{STEPS[1].subtitle}</p>
+                  <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+                    {CHARMS.map((material) => {
+                      const Icon = CHARM_ICONS[material.render as CharmIconId];
+                      return (
+                        <button
+                          key={material.id}
+                          onClick={() => addMaterial(material)}
+                          disabled={isFull}
+                          data-cursor="link"
+                          className="flex flex-col items-center gap-2 rounded-xl border border-gold/15 p-3 transition-all hover:border-gold/50 hover:bg-gold/5 disabled:cursor-not-allowed disabled:opacity-30"
+                        >
+                          <Icon className="h-7 w-7 text-gold" />
+                          <span className="text-center text-[10px] uppercase tracking-wide text-foreground/90">{material.name}</span>
+                          <span className="text-[10px] text-gold/80">+${material.price}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                  {isFull && (
+                    <p className="mt-4 text-center text-xs text-gold/70">
+                      Your necklace is at its finest — {MAX_PLACED_ITEMS} pieces. Remove one to add another.
+                    </p>
+                  )}
+                </motion.div>
+              )}
+
+              {step === 2 && (
+                <motion.div
+                  key="beads"
+                  initial={{ opacity: 0, x: 16 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -16 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <h3 className="mb-1 text-[11px] font-semibold uppercase tracking-[0.25em] text-gold">
+                    Step 3 &middot; {STEPS[2].title}
+                  </h3>
+                  <p className="mb-4 text-xs text-muted-foreground">{STEPS[2].subtitle}</p>
+                  <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+                    {BEADS.map((material) => (
+                      <button
+                        key={material.id}
+                        onClick={() => addMaterial(material)}
+                        disabled={isFull}
+                        data-cursor="link"
+                        className="flex flex-col items-center gap-2 rounded-xl border border-gold/15 p-3 transition-all hover:border-gold/50 hover:bg-gold/5 disabled:cursor-not-allowed disabled:opacity-30"
+                      >
+                        <span
+                          className="h-7 w-7 rounded-full border border-black/30"
+                          style={{ backgroundColor: BEAD_COLORS[material.render as keyof typeof BEAD_COLORS] }}
+                        />
+                        <span className="text-center text-[10px] uppercase tracking-wide text-foreground/90">{material.name}</span>
+                        <span className="text-[10px] text-gold/80">+${material.price}</span>
+                      </button>
+                    ))}
+                  </div>
+                  {isFull && (
+                    <p className="mt-4 text-center text-xs text-gold/70">
+                      Your necklace is at its finest — {MAX_PLACED_ITEMS} pieces. Remove one to add another.
+                    </p>
+                  )}
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {/* Step navigation */}
+            <div className="mt-8 flex items-center justify-between border-t border-gold/10 pt-6">
+              <button
+                onClick={goBack}
+                disabled={step === 0}
+                data-cursor="link"
+                className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-gold disabled:pointer-events-none disabled:opacity-0"
+              >
+                <ArrowLeft className="h-3.5 w-3.5" /> Back
+              </button>
+
+              {!isLastStep ? (
+                <button
+                  onClick={goNext}
+                  data-cursor="link"
+                  className="flex items-center gap-1.5 rounded-full border border-gold/40 px-5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-gold transition-all hover:border-gold hover:bg-gold/10"
+                >
+                  Done &middot; Next: {STEPS[step + 1].title} <ArrowRight className="h-3.5 w-3.5" />
+                </button>
+              ) : (
+                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-gold/70">
+                  All set — add to cart above
+                </p>
+              )}
+            </div>
           </motion.div>
         </div>
       </div>
