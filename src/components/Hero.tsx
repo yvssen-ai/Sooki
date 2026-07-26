@@ -75,8 +75,11 @@ export default function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.55, duration: 0.7 }}
-            className="mt-9 flex justify-center lg:justify-start"
+            className="mt-9 flex flex-col items-center gap-4 sm:flex-row sm:justify-center lg:justify-start"
           >
+            <MagneticButton href="/#collection" variant="outline">
+              Shop Collection
+            </MagneticButton>
             <MagneticButton href="/design" variant="solid">
               Design Your Own
             </MagneticButton>
