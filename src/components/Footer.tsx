@@ -2,9 +2,8 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Instagram, Twitter, Facebook, ArrowUp, ArrowRight } from "lucide-react";
+import { Instagram, Twitter, Facebook, ArrowUp } from "lucide-react";
 import { EyeOfHorusIcon } from "@/components/icons/EgyptIcons";
-import Logo from "@/components/Logo";
 
 const NAV_COLUMNS = [
   {
@@ -51,29 +50,6 @@ export default function Footer() {
       <div className="relative mx-auto max-w-6xl">
         <div className="mb-16 grid grid-cols-1 gap-14 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr] lg:gap-10">
           <div>
-            <Link href="/" className="mb-5 flex items-center gap-2.5">
-              <Logo className="h-7 w-9" />
-              <span className="font-headline text-xl font-semibold tracking-[0.28em] text-foreground">SOOKI</span>
-            </Link>
-            <p className="mb-6 max-w-xs text-sm leading-relaxed text-muted-foreground">
-              Luxury accessories inspired by the eternal power of Ancient Egypt. Crafted for the modern elite.
-            </p>
-
-            <form
-              onSubmit={(e) => e.preventDefault()}
-              className="mb-6 flex max-w-xs items-center border-b border-gold/30 focus-within:border-gold"
-            >
-              <input
-                type="email"
-                required
-                placeholder="Join the dynasty — your email"
-                className="w-full bg-transparent py-2.5 text-xs text-foreground placeholder:text-muted-foreground/60 focus:outline-none"
-              />
-              <button type="submit" aria-label="Subscribe" className="p-2 text-gold transition-transform hover:translate-x-1">
-                <ArrowRight className="h-4 w-4" />
-              </button>
-            </form>
-
             <div className="flex gap-3">
               {[Instagram, Twitter, Facebook].map((Icon, i) => (
                 <Link
