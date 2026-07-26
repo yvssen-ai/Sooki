@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import MagneticButton from "@/components/MagneticButton";
 import RevealText from "@/components/RevealText";
 
@@ -17,31 +16,26 @@ export default function LegacyBanner() {
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            className="relative aspect-[466/768] w-[62%] max-w-[260px] sm:max-w-[300px] lg:w-full lg:max-w-[380px]"
+            className="relative aspect-[1284/716] w-full max-w-[380px] sm:max-w-[440px] lg:max-w-[540px]"
           >
             <div className="absolute inset-0 -z-10 animate-pulse-glow rounded-full bg-gold/20 blur-[80px]" />
-            <div className="animate-float-slow relative h-full w-full" style={{ perspective: 1200 }}>
-              <motion.div
-                className="relative h-full w-full"
-                style={{ transformStyle: "preserve-3d" }}
-                animate={{ rotateY: 360 }}
-                transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-              >
-                <Image
-                  src="/images/ankh-legacy.png"
-                  alt="Golden ankh with ruby"
-                  fill
-                  sizes="(min-width: 1024px) 380px, 62vw"
-                  className="object-contain"
-                  style={{
-                    maskImage:
-                      "radial-gradient(ellipse 70% 70% at 50% 50%, black 20%, rgba(0,0,0,0.85) 40%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.15) 82%, transparent 100%)",
-                    WebkitMaskImage:
-                      "radial-gradient(ellipse 70% 70% at 50% 50%, black 20%, rgba(0,0,0,0.85) 40%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.15) 82%, transparent 100%)",
-                  }}
-                />
-              </motion.div>
-            </div>
+            <video
+              poster="/images/ankh-legacy.png"
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="absolute inset-0 h-full w-full object-contain"
+              style={{
+                maskImage:
+                  "radial-gradient(ellipse 70% 70% at 50% 50%, black 20%, rgba(0,0,0,0.85) 40%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.15) 82%, transparent 100%)",
+                WebkitMaskImage:
+                  "radial-gradient(ellipse 70% 70% at 50% 50%, black 20%, rgba(0,0,0,0.85) 40%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.15) 82%, transparent 100%)",
+              }}
+            >
+              <source src="/videos/ankh-legacy.webm" type="video/webm" />
+              <source src="/videos/ankh-legacy.mp4" type="video/mp4" />
+            </video>
           </motion.div>
         </div>
 
