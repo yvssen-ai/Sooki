@@ -21,7 +21,6 @@ const NAV_COLUMNS = [
     links: [
       { name: "Home", href: "#home" },
       { name: "Our Legacy", href: "#legacy" },
-      { name: "Testimonials", href: "#testimonials" },
     ],
   },
   {

@@ -4,8 +4,6 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Collection from "@/components/Collection";
 import LegacyBanner from "@/components/LegacyBanner";
-import Testimonials from "@/components/Testimonials";
-import InfoStrip from "@/components/InfoStrip";
 import Footer from "@/components/Footer";
 import LoadingScreen from "@/components/LoadingScreen";
 import CustomCursor from "@/components/CustomCursor";
@@ -20,8 +18,6 @@ export default function Home() {
       <Hero />
       <Collection />
       <LegacyBanner />
-      <Testimonials />
-      <InfoStrip />
       <Footer />
     </main>
   );

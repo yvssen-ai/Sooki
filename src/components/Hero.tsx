@@ -1,9 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Play } from "lucide-react";
 import Image from "next/image";
-import MagneticButton from "@/components/MagneticButton";
 import RevealText from "@/components/RevealText";
 import GoldParticles from "@/components/GoldParticles";
 import {
@@ -72,33 +70,6 @@ export default function Hero() {
             <RevealText text="TIMELESS." as="div" mode="mount" delay={1.25} className="text-foreground" />
           </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.9, duration: 0.8 }}
-            className="mx-auto mt-7 max-w-md text-balance text-sm leading-relaxed text-muted-foreground sm:text-base lg:mx-0"
-          >
-            Inspired by the glory of ancient Egypt. Crafted for the modern elite.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 2.1, duration: 0.8 }}
-            className="mt-10 flex flex-col items-center gap-6 sm:flex-row sm:justify-center lg:justify-start"
-          >
-            <MagneticButton href="#collection">Explore Collection</MagneticButton>
-
-            <button data-cursor="link" className="group flex items-center gap-3 text-foreground">
-              <span className="flex h-11 w-11 items-center justify-center rounded-full border border-gold/40 transition-all group-hover:border-gold group-hover:bg-gold/10">
-                <Play className="ml-0.5 h-3.5 w-3.5 fill-gold text-gold" />
-              </span>
-              <span className="text-left text-[11px] leading-tight">
-                <span className="block font-semibold uppercase tracking-[0.2em] text-foreground">Watch</span>
-                <span className="block text-muted-foreground">The Story</span>
-              </span>
-            </button>
-          </motion.div>
         </div>
 
         {/* Golden mask visual */}

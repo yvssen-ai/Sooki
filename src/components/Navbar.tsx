@@ -11,7 +11,6 @@ const NAV_LINKS = [
   { name: "Home", href: "#home" },
   { name: "Collection", href: "#collection" },
   { name: "About", href: "#legacy" },
-  { name: "Testimonials", href: "#testimonials" },
   { name: "Contact", href: "#footer" },
 ];
 

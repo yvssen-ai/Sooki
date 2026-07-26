@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import MagneticButton from "@/components/MagneticButton";
 import RevealText from "@/components/RevealText";
 
 export default function LegacyBanner() {
@@ -54,25 +53,6 @@ export default function LegacyBanner() {
             <RevealText text="LEGACY" className="block text-gold" delay={0.15} />
           </h2>
 
-          <motion.p
-            initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3, duration: 0.7 }}
-            className="mx-auto mt-6 max-w-md text-balance text-sm leading-relaxed text-muted-foreground sm:text-base lg:mx-0"
-          >
-            More than accessories. It&rsquo;s your power, your story, your legacy — worn by those who refuse to be forgotten.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.45, duration: 0.7 }}
-            className="mt-9 flex justify-center lg:justify-start"
-          >
-            <MagneticButton href="#collection">Discover Now</MagneticButton>
-          </motion.div>
         </div>
       </div>
     </section>
