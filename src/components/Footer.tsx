@@ -52,7 +52,7 @@ export default function Footer() {
         <div className="mb-16 grid grid-cols-1 gap-14 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr] lg:gap-10">
           <div>
             <Link href="#home" className="mb-5 flex items-center gap-2.5">
-              <Logo className="h-7 w-7" />
+              <Logo className="h-7 w-9" />
               <span className="font-headline text-xl font-semibold tracking-[0.28em] text-foreground">SOOKI</span>
             </Link>
             <p className="mb-6 max-w-xs text-sm leading-relaxed text-muted-foreground">

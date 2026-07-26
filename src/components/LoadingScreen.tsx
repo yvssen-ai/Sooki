@@ -27,7 +27,7 @@ export default function LoadingScreen() {
               transition={{ duration: 0.6, ease: "easeOut" }}
               className="mb-4"
             >
-              <Logo className="h-10 w-10" />
+              <Logo className="h-10 w-12" />
             </motion.div>
             <motion.h1
               initial={{ opacity: 0, y: 10 }}

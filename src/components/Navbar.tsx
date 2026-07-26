@@ -41,7 +41,7 @@ export default function Navbar() {
         )}
       >
         <Link href="#home" data-cursor="link" className="flex items-center gap-2.5">
-          <Logo className="h-7 w-7 sm:h-8 sm:w-8" />
+          <Logo className="h-7 w-9 sm:h-8 sm:w-10" />
           <span className="flex flex-col leading-none">
             <span className="font-headline text-lg font-semibold tracking-[0.28em] text-foreground sm:text-xl">
               SOOKI
@@ -101,7 +101,7 @@ export default function Navbar() {
           >
             <div className="mb-16 flex items-center justify-between">
               <span className="flex items-center gap-2 font-headline text-xl font-semibold tracking-[0.28em]">
-                <Logo className="h-7 w-7" /> SOOKI
+                <Logo className="h-7 w-9" /> SOOKI
               </span>
               <button onClick={() => setIsMobileMenuOpen(false)} aria-label="Close Menu">
                 <X className="h-7 w-7" />
