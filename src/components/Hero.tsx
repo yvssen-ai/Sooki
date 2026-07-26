@@ -86,13 +86,21 @@ export default function Hero() {
               alt="Egyptian queen holding an ankh"
               fill
               priority
-              sizes="(min-width: 1024px) 46vw, 92vw"
+              sizes="(min-width: 1024px) 38vw, 85vw"
               className="object-contain"
               style={{
                 maskImage:
-                  "radial-gradient(ellipse 70% 70% at 50% 50%, black 20%, rgba(0,0,0,0.85) 40%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.15) 82%, transparent 100%)",
+                  "radial-gradient(ellipse 62% 62% at 50% 50%, black 10%, rgba(0,0,0,0.75) 30%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.12) 72%, transparent 92%)",
                 WebkitMaskImage:
-                  "radial-gradient(ellipse 70% 70% at 50% 50%, black 20%, rgba(0,0,0,0.85) 40%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.15) 82%, transparent 100%)",
+                  "radial-gradient(ellipse 62% 62% at 50% 50%, black 10%, rgba(0,0,0,0.75) 30%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.12) 72%, transparent 92%)",
+              }}
+            />
+            {/* Reinforcing vignette so busier edge content (walls, columns) still dissolves fully into black */}
+            <div
+              className="pointer-events-none absolute inset-0"
+              style={{
+                background:
+                  "radial-gradient(ellipse 60% 60% at 50% 50%, transparent 35%, rgba(0,0,0,0.6) 65%, black 95%)",
               }}
             />
           </div>
