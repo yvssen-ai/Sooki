@@ -63,7 +63,7 @@ export default function Hero() {
             transition={{ delay: 0.7, duration: 0.7 }}
             className="mb-6 flex items-center justify-center gap-3 text-[10px] font-medium uppercase tracking-[0.4em] text-gold/80 lg:justify-start"
           >
-            <span className="h-px w-6 bg-gold/60" /> Pharao Accessories <span className="h-px w-6 bg-gold/60 lg:hidden" />
+            <span className="h-px w-6 bg-gold/60" /> Sooki Accessories <span className="h-px w-6 bg-gold/60 lg:hidden" />
           </motion.span>
 
           <h1 className="font-headline text-[clamp(2.75rem,9.5vw,7.25rem)] font-semibold leading-[0.95] tracking-tight text-gold">

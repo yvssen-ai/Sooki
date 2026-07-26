@@ -17,7 +17,7 @@ const cinzel = Cinzel({
 });
 
 export const metadata: Metadata = {
-  title: 'PHARAO | Legacy. Power. Timeless.',
+  title: 'SOOKI | Legacy. Power. Timeless.',
   description: 'Luxury accessories inspired by the eternal power of Ancient Egypt. Rings, pendants, necklaces and bracelets crafted for the modern elite.',
 };
 

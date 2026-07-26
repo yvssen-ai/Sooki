@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Instagram, Twitter, Facebook, ArrowUp, ArrowRight } from "lucide-react";
-import { WingedSunIcon, EyeOfHorusIcon } from "@/components/icons/EgyptIcons";
+import { EyeOfHorusIcon } from "@/components/icons/EgyptIcons";
+import EyeOfHorusLogo from "@/components/icons/EyeOfHorusLogo";
 
 const NAV_COLUMNS = [
   {
@@ -51,8 +52,8 @@ export default function Footer() {
         <div className="mb-16 grid grid-cols-1 gap-14 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr] lg:gap-10">
           <div>
             <Link href="#home" className="mb-5 flex items-center gap-2.5">
-              <WingedSunIcon className="h-7 w-7 text-gold" />
-              <span className="font-headline text-xl font-semibold tracking-[0.28em] text-foreground">PHARAO</span>
+              <EyeOfHorusLogo className="h-7 w-7 text-gold" />
+              <span className="font-headline text-xl font-semibold tracking-[0.28em] text-foreground">SOOKI</span>
             </Link>
             <p className="mb-6 max-w-xs text-sm leading-relaxed text-muted-foreground">
               Luxury accessories inspired by the eternal power of Ancient Egypt. Crafted for the modern elite.
@@ -113,7 +114,7 @@ export default function Footer() {
 
         <div className="flex flex-col items-center justify-between gap-6 pt-8 sm:flex-row">
           <p className="text-xs text-muted-foreground/60">
-            &copy; {new Date().getFullYear()} Pharao Accessories. All legacies reserved.
+            &copy; {new Date().getFullYear()} Sooki Accessories. All legacies reserved.
           </p>
           <button
             onClick={scrollToTop}

@@ -3,7 +3,6 @@
 import Navbar from "@/components/Navbar";
 import AnnouncementBar from "@/components/AnnouncementBar";
 import Hero from "@/components/Hero";
-import FeaturesStrip from "@/components/FeaturesStrip";
 import Collection from "@/components/Collection";
 import LegacyBanner from "@/components/LegacyBanner";
 import Testimonials from "@/components/Testimonials";
@@ -21,7 +20,6 @@ export default function Home() {
       <AnnouncementBar />
       <Navbar />
       <Hero />
-      <FeaturesStrip />
       <Collection />
       <LegacyBanner />
       <Testimonials />

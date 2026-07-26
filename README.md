@@ -1,4 +1,4 @@
-# Sooki — PHARAO
+# Sooki
 
 A luxury Egyptian accessories e-commerce landing page. Black & gold, cinematic, mobile-first.
 

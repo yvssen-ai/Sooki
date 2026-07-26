@@ -4,7 +4,7 @@ import { Star } from "lucide-react";
 
 const TESTIMONIALS = [
   { name: "Amira K.", quote: "The Pharaoh Ring feels like it was pulled from a museum vault. Weight, finish, presence — all flawless.", role: "Cairo, EG" },
-  { name: "Daniel R.", quote: "I've bought from a dozen luxury jewelers. Pharao's Ankh Pendant is the first piece that felt like a story, not a product.", role: "Dubai, UAE" },
+  { name: "Daniel R.", quote: "I've bought from a dozen luxury jewelers. Sooki's Ankh Pendant is the first piece that felt like a story, not a product.", role: "Dubai, UAE" },
   { name: "Sara M.", quote: "Unboxing this was cinematic in itself. The Horus Necklace is now the only thing I reach for.", role: "London, UK" },
   { name: "Youssef T.", quote: "Bold without being loud. The Egyptian Bracelet gets stopped and asked about constantly.", role: "New York, US" },
   { name: "Layla H.", quote: "Exclusive is not marketing here — it's real. Limited drops, real craftsmanship, real legacy.", role: "Riyadh, SA" },

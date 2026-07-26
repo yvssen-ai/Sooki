@@ -116,17 +116,6 @@ export function PyramidIcon({ animate, delay, ...props }: EgyptIconProps) {
   );
 }
 
-export function WingedSunIcon({ animate, delay, ...props }: EgyptIconProps) {
-  return (
-    <IconShell animate={animate} delay={delay} {...props}>
-      <P variants={drawVariants} d="M32 24a8 8 0 1 0 0.001 0Z" />
-      <P variants={drawVariants} d="M24 30C18 26 10 26 2 30c6 3 8 6 8 9c4-2 9-2 14 1" custom={0.15} />
-      <P variants={drawVariants} d="M40 30c6-4 14-4 22 0c-6 3-8 6-8 9c-4-2-9-2-14 1" custom={0.15} />
-      <P variants={drawVariants} d="M18 20c3-2 6-2 8 0M46 20c-3-2-6-2-8 0" custom={0.3} />
-    </IconShell>
-  );
-}
-
 export function ScrollIndicatorIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 40" fill="none" {...props}>

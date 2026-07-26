@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
-import { WingedSunIcon } from "@/components/icons/EgyptIcons";
+import EyeOfHorusLogo from "@/components/icons/EyeOfHorusLogo";
 
 export default function LoadingScreen() {
   const [loading, setLoading] = useState(true);
@@ -27,7 +27,7 @@ export default function LoadingScreen() {
               transition={{ duration: 0.6, ease: "easeOut" }}
               className="mb-4"
             >
-              <WingedSunIcon animate delay={0.1} className="h-10 w-10 text-gold" />
+              <EyeOfHorusLogo className="h-10 w-10 text-gold" />
             </motion.div>
             <motion.h1
               initial={{ opacity: 0, y: 10 }}
@@ -35,7 +35,7 @@ export default function LoadingScreen() {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="mb-4 font-headline text-3xl font-semibold tracking-[0.3em] text-gold"
             >
-              PHARAO
+              SOOKI
             </motion.h1>
             <motion.div
               className="h-px w-28 bg-gold/30"
