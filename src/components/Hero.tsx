@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import RevealText from "@/components/RevealText";
 import GoldParticles from "@/components/GoldParticles";
+import MagneticButton from "@/components/MagneticButton";
 import {
   EyeOfHorusIcon,
   AnkhIcon,
@@ -70,6 +71,16 @@ export default function Hero() {
             <RevealText text="TIMELESS." as="div" mode="mount" delay={1.25} className="text-foreground" />
           </h1>
 
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.55, duration: 0.7 }}
+            className="mt-9 flex justify-center lg:justify-start"
+          >
+            <MagneticButton href="/design" variant="solid">
+              Design Your Own
+            </MagneticButton>
+          </motion.div>
         </div>
 
         {/* Golden mask visual */}

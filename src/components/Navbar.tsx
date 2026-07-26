@@ -8,10 +8,10 @@ import { cn } from "@/lib/utils";
 import Logo from "@/components/Logo";
 
 const NAV_LINKS = [
-  { name: "Home", href: "#home" },
-  { name: "Collection", href: "#collection" },
-  { name: "About", href: "#legacy" },
-  { name: "Contact", href: "#footer" },
+  { name: "Home", href: "/#home" },
+  { name: "Collection", href: "/#collection" },
+  { name: "About", href: "/#legacy" },
+  { name: "Contact", href: "/#footer" },
 ];
 
 export default function Navbar() {
@@ -39,7 +39,7 @@ export default function Navbar() {
           isScrolled ? "glass shadow-[0_4px_30px_-10px_rgba(0,0,0,0.8)]" : "bg-transparent"
         )}
       >
-        <Link href="#home" data-cursor="link" className="flex items-center gap-2.5">
+        <Link href="/" data-cursor="link" className="flex items-center gap-2.5">
           <Logo className="h-7 w-9 sm:h-8 sm:w-10" />
           <span className="flex flex-col leading-none">
             <span className="font-headline text-lg font-semibold tracking-[0.28em] text-foreground sm:text-xl">

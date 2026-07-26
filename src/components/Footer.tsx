@@ -10,17 +10,18 @@ const NAV_COLUMNS = [
   {
     title: "Shop",
     links: [
-      { name: "Rings", href: "#collection" },
-      { name: "Bracelets", href: "#collection" },
-      { name: "Necklaces", href: "#collection" },
-      { name: "Pendants", href: "#collection" },
+      { name: "Rings", href: "/#collection" },
+      { name: "Bracelets", href: "/#collection" },
+      { name: "Necklaces", href: "/#collection" },
+      { name: "Pendants", href: "/#collection" },
     ],
   },
   {
     title: "Company",
     links: [
-      { name: "Home", href: "#home" },
-      { name: "Our Legacy", href: "#legacy" },
+      { name: "Home", href: "/#home" },
+      { name: "Our Legacy", href: "/#legacy" },
+      { name: "Design Your Own", href: "/design" },
     ],
   },
   {
@@ -50,7 +51,7 @@ export default function Footer() {
       <div className="relative mx-auto max-w-6xl">
         <div className="mb-16 grid grid-cols-1 gap-14 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr] lg:gap-10">
           <div>
-            <Link href="#home" className="mb-5 flex items-center gap-2.5">
+            <Link href="/" className="mb-5 flex items-center gap-2.5">
               <Logo className="h-7 w-9" />
               <span className="font-headline text-xl font-semibold tracking-[0.28em] text-foreground">SOOKI</span>
             </Link>

@@ -2,7 +2,8 @@
 
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { RotateCcw, Trash2, ShoppingBag } from "lucide-react";
+import { RotateCcw, Trash2, ShoppingBag, ArrowLeft } from "lucide-react";
+import Link from "next/link";
 import NecklaceCanvas from "@/components/design/NecklaceCanvas";
 import MagneticButton from "@/components/MagneticButton";
 import RevealText from "@/components/RevealText";
@@ -67,6 +68,14 @@ export default function DesignStudio() {
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_50%_0%,_hsl(var(--gold)/0.1),_transparent_55%)]" />
 
       <div className="mx-auto max-w-6xl">
+        <Link
+          href="/"
+          data-cursor="link"
+          className="mb-8 inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-gold"
+        >
+          <ArrowLeft className="h-3.5 w-3.5" /> Back to Home
+        </Link>
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
