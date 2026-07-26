@@ -77,30 +77,30 @@ export default function Hero() {
           initial={{ opacity: 0, y: 40, scale: 0.94 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
-          className="relative aspect-[1376/768] w-[85%] max-w-[380px] shrink-0 sm:max-w-[460px] lg:w-[38vw] lg:max-w-[540px]"
+          className="relative aspect-[639/768] w-[68%] max-w-[300px] shrink-0 sm:max-w-[360px] lg:w-[30vw] lg:max-w-[460px]"
         >
           <div className="absolute inset-0 -z-10 animate-pulse-glow rounded-full bg-gold/25 blur-[90px]" />
           <div className="animate-float-slow relative h-full w-full">
             <Image
-              src="/images/hero-queen.jpg"
+              src="/images/hero-nefertiti.jpg"
               alt="Egyptian queen holding an ankh"
               fill
               priority
-              sizes="(min-width: 1024px) 38vw, 85vw"
+              sizes="(min-width: 1024px) 30vw, 68vw"
               className="object-contain"
               style={{
                 maskImage:
-                  "radial-gradient(ellipse 62% 62% at 50% 50%, black 10%, rgba(0,0,0,0.75) 30%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.12) 72%, transparent 92%)",
+                  "radial-gradient(ellipse 85% 88% at 50% 50%, black 45%, rgba(0,0,0,0.7) 65%, rgba(0,0,0,0.3) 82%, transparent 98%)",
                 WebkitMaskImage:
-                  "radial-gradient(ellipse 62% 62% at 50% 50%, black 10%, rgba(0,0,0,0.75) 30%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.12) 72%, transparent 92%)",
+                  "radial-gradient(ellipse 85% 88% at 50% 50%, black 45%, rgba(0,0,0,0.7) 65%, rgba(0,0,0,0.3) 82%, transparent 98%)",
               }}
             />
-            {/* Reinforcing vignette so busier edge content (walls, columns) still dissolves fully into black */}
+            {/* Reinforcing vignette, kept subtle so more of the photo stays visible */}
             <div
               className="pointer-events-none absolute inset-0"
               style={{
                 background:
-                  "radial-gradient(ellipse 60% 60% at 50% 50%, transparent 35%, rgba(0,0,0,0.6) 65%, black 95%)",
+                  "radial-gradient(ellipse 85% 88% at 50% 50%, transparent 70%, rgba(0,0,0,0.35) 88%, black 100%)",
               }}
             />
           </div>
