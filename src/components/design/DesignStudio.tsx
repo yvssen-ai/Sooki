@@ -125,17 +125,18 @@ export default function DesignStudio() {
           </p>
         </motion.div>
 
-        <div className="flex flex-col gap-12 lg:flex-row lg:items-start lg:gap-10">
-          {/* Preview — sticky so the necklace stays in view while scrolling the materials list */}
+        <div className="mx-auto max-w-2xl">
           <motion.div
             initial={{ opacity: 0, scale: 0.96 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="sticky top-20 z-10 flex flex-col items-center justify-center rounded-3xl border border-gold/15 bg-gradient-to-b from-[#0e0e0e] to-black p-6 sm:top-24 sm:p-10 lg:w-[52%] lg:shrink-0"
+            className="relative rounded-3xl border border-gold/15 bg-gradient-to-b from-[#0e0e0e] to-black p-6 sm:p-10"
           >
             <div className="pointer-events-none absolute inset-0 -z-10 rounded-3xl bg-[radial-gradient(circle_at_50%_30%,_hsl(var(--gold)/0.12),_transparent_65%)]" />
-            <div className="aspect-[460/300] w-full">
+
+            {/* Necklace picture — flexible aspect ratio so it adapts to the viewport instead of a fixed box */}
+            <div className="aspect-[3/2] w-full sm:aspect-[16/9]">
               <NecklaceCanvas chain={chain} items={items} onRemove={removeItem} />
             </div>
 
@@ -191,48 +192,8 @@ export default function DesignStudio() {
               </div>
             )}
 
-            <div className="mt-6 flex w-full items-center justify-between border-t border-gold/10 pt-6">
-              <div>
-                <p className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground">Your Design</p>
-                <p className="font-headline text-2xl text-gold">${total.toFixed(2)}</p>
-              </div>
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={undoLast}
-                  disabled={items.length === 0}
-                  data-cursor="link"
-                  aria-label="Undo last piece"
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-gold/25 text-gold transition-all hover:border-gold hover:bg-gold/10 disabled:cursor-not-allowed disabled:opacity-30"
-                >
-                  <RotateCcw className="h-3.5 w-3.5" />
-                </button>
-                <button
-                  onClick={clearAll}
-                  disabled={items.length === 0}
-                  data-cursor="link"
-                  aria-label="Clear all pieces"
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-gold/25 text-gold transition-all hover:border-gold hover:bg-gold/10 disabled:cursor-not-allowed disabled:opacity-30"
-                >
-                  <Trash2 className="h-3.5 w-3.5" />
-                </button>
-              </div>
-            </div>
-
-            <MagneticButton className="mt-6 w-full" onClick={handleAddToCart}>
-              <span className="inline-flex items-center gap-2">
-                <ShoppingBag className="h-3.5 w-3.5" /> Add To Cart
-              </span>
-            </MagneticButton>
-          </motion.div>
-
-          {/* Steps */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.7, delay: 0.15 }}
-            className="lg:min-w-0 lg:flex-1"
-          >
+            {/* Materials slider — right under the necklace picture */}
+            <div className="mt-8 border-t border-gold/10 pt-6">
             {/* Step indicator */}
             <div className="relative mb-10">
               <div className="absolute left-0 right-0 top-4 h-px bg-gold/15" />
@@ -476,6 +437,41 @@ export default function DesignStudio() {
                 </p>
               )}
             </div>
+            </div>
+
+            {/* Price — moved below the materials slider */}
+            <div className="mt-8 flex w-full items-center justify-between border-t border-gold/10 pt-6">
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground">Your Design</p>
+                <p className="font-headline text-2xl text-gold">${total.toFixed(2)}</p>
+              </div>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={undoLast}
+                  disabled={items.length === 0}
+                  data-cursor="link"
+                  aria-label="Undo last piece"
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-gold/25 text-gold transition-all hover:border-gold hover:bg-gold/10 disabled:cursor-not-allowed disabled:opacity-30"
+                >
+                  <RotateCcw className="h-3.5 w-3.5" />
+                </button>
+                <button
+                  onClick={clearAll}
+                  disabled={items.length === 0}
+                  data-cursor="link"
+                  aria-label="Clear all pieces"
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-gold/25 text-gold transition-all hover:border-gold hover:bg-gold/10 disabled:cursor-not-allowed disabled:opacity-30"
+                >
+                  <Trash2 className="h-3.5 w-3.5" />
+                </button>
+              </div>
+            </div>
+
+            <MagneticButton className="mt-6 w-full" onClick={handleAddToCart}>
+              <span className="inline-flex items-center gap-2">
+                <ShoppingBag className="h-3.5 w-3.5" /> Add To Cart
+              </span>
+            </MagneticButton>
           </motion.div>
         </div>
       </div>
