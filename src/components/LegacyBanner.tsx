@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import AnubisFigure from "@/components/AnubisFigure";
+import Image from "next/image";
 import MagneticButton from "@/components/MagneticButton";
 import RevealText from "@/components/RevealText";
 
@@ -12,9 +12,31 @@ export default function LegacyBanner() {
 
       <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-14 lg:grid-cols-2 lg:gap-8">
         <div className="order-1 flex justify-center lg:order-1 lg:justify-start">
-          <div className="relative aspect-[3/4] w-[62%] max-w-[260px] sm:max-w-[300px] lg:w-full lg:max-w-[380px]">
-            <AnubisFigure className="relative h-full w-full" />
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 40, scale: 0.94 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            className="relative aspect-[466/768] w-[62%] max-w-[260px] sm:max-w-[300px] lg:w-full lg:max-w-[380px]"
+          >
+            <div className="absolute inset-0 -z-10 animate-pulse-glow rounded-full bg-gold/20 blur-[80px]" />
+            <div className="animate-float-slow relative h-full w-full">
+              <Image
+                src="/images/ankh-legacy.png"
+                alt="Golden ankh with ruby"
+                fill
+                sizes="(min-width: 1024px) 380px, 62vw"
+                className="object-contain"
+                style={{
+                  maskImage:
+                    "radial-gradient(ellipse 65% 72% at 50% 42%, black 25%, rgba(0,0,0,0.85) 45%, rgba(0,0,0,0.5) 65%, rgba(0,0,0,0.15) 85%, transparent 100%)",
+                  WebkitMaskImage:
+                    "radial-gradient(ellipse 65% 72% at 50% 42%, black 25%, rgba(0,0,0,0.85) 45%, rgba(0,0,0,0.5) 65%, rgba(0,0,0,0.15) 85%, transparent 100%)",
+                }}
+              />
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black via-black/60 to-transparent" />
+            </div>
+          </motion.div>
         </div>
 
         <div className="order-2 text-center lg:order-2 lg:text-left">
