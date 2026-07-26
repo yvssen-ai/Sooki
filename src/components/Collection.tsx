@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import { ChevronLeft, ChevronRight, Search, Sparkles } from "lucide-react";
 import { COLLECTION_CATEGORIES, PRODUCTS } from "@/lib/collection-data";
 import ProductIcon from "@/components/ProductIcon";
@@ -108,17 +109,27 @@ export default function Collection() {
                     >
                       <Search className="h-3.5 w-3.5" />
                     </button>
-                    <motion.div
-                      className="absolute inset-0 flex items-center justify-center p-10"
-                      animate={{ y: [0, -6, 0] }}
-                      transition={{ duration: 5 + i * 0.3, repeat: Infinity, ease: "easeInOut" }}
-                    >
-                      <ProductIcon
-                        shape={product.shape}
-                        symbol={product.symbol}
-                        className="h-full w-full transition-transform duration-500 group-hover:scale-110"
+                    {product.image ? (
+                      <Image
+                        src={product.image}
+                        alt={product.name}
+                        fill
+                        sizes="(min-width: 640px) 280px, 64vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-110"
                       />
-                    </motion.div>
+                    ) : (
+                      <motion.div
+                        className="absolute inset-0 flex items-center justify-center p-10"
+                        animate={{ y: [0, -6, 0] }}
+                        transition={{ duration: 5 + i * 0.3, repeat: Infinity, ease: "easeInOut" }}
+                      >
+                        <ProductIcon
+                          shape={product.shape}
+                          symbol={product.symbol}
+                          className="h-full w-full transition-transform duration-500 group-hover:scale-110"
+                        />
+                      </motion.div>
+                    )}
                   </div>
 
                   <div className="mt-4 flex items-center justify-between px-1">
