@@ -20,20 +20,27 @@ export default function LegacyBanner() {
             className="relative aspect-[466/768] w-[62%] max-w-[260px] sm:max-w-[300px] lg:w-full lg:max-w-[380px]"
           >
             <div className="absolute inset-0 -z-10 animate-pulse-glow rounded-full bg-gold/20 blur-[80px]" />
-            <div className="animate-float-slow relative h-full w-full">
-              <Image
-                src="/images/ankh-legacy.png"
-                alt="Golden ankh with ruby"
-                fill
-                sizes="(min-width: 1024px) 380px, 62vw"
-                className="object-contain"
-                style={{
-                  maskImage:
-                    "radial-gradient(ellipse 70% 70% at 50% 50%, black 20%, rgba(0,0,0,0.85) 40%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.15) 82%, transparent 100%)",
-                  WebkitMaskImage:
-                    "radial-gradient(ellipse 70% 70% at 50% 50%, black 20%, rgba(0,0,0,0.85) 40%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.15) 82%, transparent 100%)",
-                }}
-              />
+            <div className="animate-float-slow relative h-full w-full" style={{ perspective: 1200 }}>
+              <motion.div
+                className="relative h-full w-full"
+                style={{ transformStyle: "preserve-3d" }}
+                animate={{ rotateY: 360 }}
+                transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+              >
+                <Image
+                  src="/images/ankh-legacy.png"
+                  alt="Golden ankh with ruby"
+                  fill
+                  sizes="(min-width: 1024px) 380px, 62vw"
+                  className="object-contain"
+                  style={{
+                    maskImage:
+                      "radial-gradient(ellipse 70% 70% at 50% 50%, black 20%, rgba(0,0,0,0.85) 40%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.15) 82%, transparent 100%)",
+                    WebkitMaskImage:
+                      "radial-gradient(ellipse 70% 70% at 50% 50%, black 20%, rgba(0,0,0,0.85) 40%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.15) 82%, transparent 100%)",
+                  }}
+                />
+              </motion.div>
             </div>
           </motion.div>
         </div>
