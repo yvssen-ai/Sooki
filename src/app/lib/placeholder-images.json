@@ -1,0 +1,95 @@
+
+{
+  "placeholderImages": [
+    {
+      "id": "hero-bg",
+      "description": "Cinematic shot of coffee pouring into a ceramic cup",
+      "imageUrl": "https://picsum.photos/seed/curio-hero/1200/800",
+      "imageHint": "coffee pouring"
+    },
+    {
+      "id": "about-image",
+      "description": "Minimalist coffee shop interior with warm lighting",
+      "imageUrl": "https://picsum.photos/seed/curio-interior/800/1000",
+      "imageHint": "minimalist cafe"
+    },
+    {
+      "id": "experience-image",
+      "description": "Barista preparing a pour-over coffee with precision",
+      "imageUrl": "https://picsum.photos/seed/curio-brew/1000/1000",
+      "imageHint": "barista brewing"
+    },
+    {
+      "id": "espresso",
+      "description": "Rich espresso shot with crema",
+      "imageUrl": "https://picsum.photos/seed/espresso-shot/600/400",
+      "imageHint": "espresso shot"
+    },
+    {
+      "id": "latte",
+      "description": "Latte with heart-shaped foam art",
+      "imageUrl": "https://picsum.photos/seed/latte-art/600/400",
+      "imageHint": "latte art"
+    },
+    {
+      "id": "cappuccino",
+      "description": "Foamy cappuccino in a white cup",
+      "imageUrl": "https://picsum.photos/seed/cappuccino-foam/600/400",
+      "imageHint": "cappuccino coffee"
+    },
+    {
+      "id": "americano",
+      "description": "Black Americano coffee",
+      "imageUrl": "https://picsum.photos/seed/black-americano/600/400",
+      "imageHint": "americano coffee"
+    },
+    {
+      "id": "matcha",
+      "description": "Vibrant green iced matcha latte",
+      "imageUrl": "https://picsum.photos/seed/iced-matcha/600/400",
+      "imageHint": "iced matcha"
+    },
+    {
+      "id": "karak",
+      "description": "Traditional spicy karak tea in a glass",
+      "imageUrl": "https://picsum.photos/seed/karak-tea/600/400",
+      "imageHint": "karak tea"
+    },
+    {
+      "id": "v60",
+      "description": "Pour-over coffee being brewed into a carafe",
+      "imageUrl": "https://picsum.photos/seed/v60-pour/600/400",
+      "imageHint": "pour-over coffee"
+    },
+    {
+      "id": "smoothie",
+      "description": "Fresh berry smoothie with a straw",
+      "imageUrl": "https://picsum.photos/seed/berry-smoothie/600/400",
+      "imageHint": "fruit smoothie"
+    },
+    {
+      "id": "parathah",
+      "description": "Crispy golden parathah flatbread",
+      "imageUrl": "https://picsum.photos/seed/crispy-paratha/600/400",
+      "imageHint": "paratha flatbread"
+    },
+    {
+      "id": "hot-chocolate",
+      "description": "Rich hot chocolate with marshmallows",
+      "imageUrl": "https://picsum.photos/seed/hot-cocoa/600/400",
+      "imageHint": "hot chocolate"
+    },
+    {
+      "id": "iced-coffee",
+      "description": "Iced coffee with milk swirls",
+      "imageUrl": "https://picsum.photos/seed/iced-latte-milk/600/400",
+      "imageHint": "iced latte"
+    },
+    {
+      "id": "refresher",
+      "description": "Colorful mojito with mint and lime",
+      "imageUrl": "https://picsum.photos/seed/mojito-lime/600/400",
+      "imageHint": "cold mojito"
+    }
+  ]
+}

@@ -1,0 +1,156 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 2%; /* #050505 */
+    --foreground: 42 38% 92%; /* warm ivory */
+    --card: 0 0% 4%; /* #0B0B0B */
+    --card-foreground: 42 38% 92%;
+    --popover: 0 0% 4%;
+    --popover-foreground: 42 38% 92%;
+    --primary: 46 62% 52%; /* #D4AF37 Pharaoh Gold */
+    --primary-foreground: 0 0% 5%;
+    --secondary: 0 0% 8%;
+    --secondary-foreground: 42 30% 85%;
+    --muted: 0 0% 9%;
+    --muted-foreground: 40 12% 58%;
+    --accent: 45 100% 71%; /* #FFD66B Soft Gold Glow */
+    --accent-foreground: 0 0% 5%;
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 43 30% 24%;
+    --input: 43 20% 16%;
+    --ring: 45 100% 71%;
+    --radius: 0.5rem;
+
+    /* Egyptian gold palette */
+    --gold: 46 62% 52%; /* #D4AF37 */
+    --gold-antique: 39 76% 37%; /* #B8860B */
+    --gold-glow: 45 100% 71%; /* #FFD66B */
+    --black-rich: 0 0% 4%; /* #0B0B0B */
+    --black-pure: 0 0% 2%; /* #050505 */
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: hsl(var(--background));
+  }
+
+  body {
+    @apply bg-background text-foreground selection:bg-accent/30 selection:text-background;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-headline tracking-tight;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .glass {
+    @apply bg-black/40 backdrop-blur-xl border border-primary/15;
+  }
+
+  /* Subtle gold hairline divider */
+  .divider-gold {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, hsl(var(--gold) / 0.6), transparent);
+  }
+
+  .glow-gold {
+    box-shadow: 0 0 40px -8px hsl(var(--gold) / 0.45);
+  }
+
+  .glow-gold-sm {
+    box-shadow: 0 0 16px -4px hsl(var(--gold) / 0.5);
+  }
+
+  /* Fine film-grain noise overlay for cinematic texture */
+  .bg-grain {
+    position: relative;
+  }
+  .bg-grain::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.05;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-float-slow {
+    animation: float 9s ease-in-out infinite;
+  }
+
+  .animate-shimmer {
+    background-size: 200% 100%;
+    animation: shimmer 3.5s linear infinite;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-16px) rotate(1deg); }
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.5; filter: blur(40px); }
+  50% { opacity: 0.9; filter: blur(55px); }
+}
+
+/* Hide native cursor on desktop where the custom cursor is active */
+@media (pointer: fine) {
+  html.custom-cursor-active,
+  html.custom-cursor-active a,
+  html.custom-cursor-active button {
+    cursor: none;
+  }
+}
+
+/* Hide scrollbar for cleaner look, gold accented */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--gold) / 0.4);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--gold) / 0.7);
+}
