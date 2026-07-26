@@ -1,8 +1,19 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence, Reorder } from "framer-motion";
-import { RotateCcw, Trash2, ShoppingBag, ArrowLeft, ArrowRight, Check, GripVertical, X } from "lucide-react";
+import {
+  RotateCcw,
+  Trash2,
+  ShoppingBag,
+  ArrowLeft,
+  ArrowRight,
+  ChevronLeft,
+  ChevronRight,
+  Check,
+  GripVertical,
+  X,
+} from "lucide-react";
 import Link from "next/link";
 import NecklaceCanvas from "@/components/design/NecklaceCanvas";
 import MagneticButton from "@/components/MagneticButton";
@@ -45,6 +56,13 @@ export default function DesignStudio() {
   const isLastStep = step === STEPS.length - 1;
   const goNext = () => setStep((s) => Math.min(s + 1, STEPS.length - 1));
   const goBack = () => setStep((s) => Math.max(s - 1, 0));
+
+  const chainTrackRef = useRef<HTMLDivElement>(null);
+  const charmTrackRef = useRef<HTMLDivElement>(null);
+  const beadTrackRef = useRef<HTMLDivElement>(null);
+  const scrollTrack = (ref: React.RefObject<HTMLDivElement | null>, dir: 1 | -1) => {
+    ref.current?.scrollBy({ left: dir * 190, behavior: "smooth" });
+  };
 
   const chain = CHAIN_STYLES.find((c) => c.id === chainId)!;
 
@@ -268,27 +286,48 @@ export default function DesignStudio() {
                     Step 1 &middot; {STEPS[0].title}
                   </h3>
                   <p className="mb-4 text-xs text-muted-foreground">{STEPS[0].subtitle}</p>
-                  <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-                    {CHAIN_STYLES.map((c) => (
-                      <button
-                        key={c.id}
-                        onClick={() => setChainId(c.id)}
-                        data-cursor="link"
-                        className={cn(
-                          "flex flex-col items-center gap-2 rounded-xl border p-3 transition-all",
-                          chainId === c.id ? "border-gold bg-gold/10" : "border-gold/15 hover:border-gold/40"
-                        )}
-                      >
-                        <span
-                          className="h-6 w-6 rounded-full border border-black/30"
-                          style={{ backgroundColor: c.color }}
-                        />
-                        <span className="text-center text-[10px] uppercase tracking-wide text-foreground/90">{c.name}</span>
-                        <span className="text-[10px] text-gold/80">
-                          {c.priceModifier > 0 ? `+$${c.priceModifier}` : "Included"}
-                        </span>
-                      </button>
-                    ))}
+                  <div className="relative">
+                    <button
+                      onClick={() => scrollTrack(chainTrackRef, -1)}
+                      data-cursor="link"
+                      aria-label="Previous"
+                      className="absolute left-0 top-1/2 z-20 hidden h-9 w-9 -translate-x-3 -translate-y-1/2 items-center justify-center rounded-full border border-gold/30 bg-black/70 text-gold backdrop-blur transition-all hover:border-gold hover:bg-gold/10 sm:flex"
+                    >
+                      <ChevronLeft className="h-4 w-4" />
+                    </button>
+                    <button
+                      onClick={() => scrollTrack(chainTrackRef, 1)}
+                      data-cursor="link"
+                      aria-label="Next"
+                      className="absolute right-0 top-1/2 z-20 hidden h-9 w-9 -translate-y-1/2 translate-x-3 items-center justify-center rounded-full border border-gold/30 bg-black/70 text-gold backdrop-blur transition-all hover:border-gold hover:bg-gold/10 sm:flex"
+                    >
+                      <ChevronRight className="h-4 w-4" />
+                    </button>
+                    <div
+                      ref={chainTrackRef}
+                      className="hide-scrollbar flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-smooth px-1 pb-2"
+                    >
+                      {CHAIN_STYLES.map((c) => (
+                        <button
+                          key={c.id}
+                          onClick={() => setChainId(c.id)}
+                          data-cursor="link"
+                          className={cn(
+                            "flex w-[42vw] shrink-0 snap-center flex-col items-center gap-2 rounded-xl border p-4 transition-all sm:w-[160px]",
+                            chainId === c.id ? "border-gold bg-gold/10" : "border-gold/15 hover:border-gold/40"
+                          )}
+                        >
+                          <span
+                            className="h-8 w-8 rounded-full border border-black/30"
+                            style={{ backgroundColor: c.color }}
+                          />
+                          <span className="text-center text-[11px] uppercase tracking-wide text-foreground/90">{c.name}</span>
+                          <span className="text-[11px] text-gold/80">
+                            {c.priceModifier > 0 ? `+$${c.priceModifier}` : "Included"}
+                          </span>
+                        </button>
+                      ))}
+                    </div>
                   </div>
                 </motion.div>
               )}
@@ -305,23 +344,44 @@ export default function DesignStudio() {
                     Step 2 &middot; {STEPS[1].title}
                   </h3>
                   <p className="mb-4 text-xs text-muted-foreground">{STEPS[1].subtitle}</p>
-                  <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-                    {CHARMS.map((material) => {
-                      const Icon = CHARM_ICONS[material.render as CharmIconId];
-                      return (
-                        <button
-                          key={material.id}
-                          onClick={() => addMaterial(material)}
-                          disabled={isFull}
-                          data-cursor="link"
-                          className="flex flex-col items-center gap-2 rounded-xl border border-gold/15 p-3 transition-all hover:border-gold/50 hover:bg-gold/5 disabled:cursor-not-allowed disabled:opacity-30"
-                        >
-                          <Icon className="h-7 w-7 text-gold" />
-                          <span className="text-center text-[10px] uppercase tracking-wide text-foreground/90">{material.name}</span>
-                          <span className="text-[10px] text-gold/80">+${material.price}</span>
-                        </button>
-                      );
-                    })}
+                  <div className="relative">
+                    <button
+                      onClick={() => scrollTrack(charmTrackRef, -1)}
+                      data-cursor="link"
+                      aria-label="Previous"
+                      className="absolute left-0 top-1/2 z-20 hidden h-9 w-9 -translate-x-3 -translate-y-1/2 items-center justify-center rounded-full border border-gold/30 bg-black/70 text-gold backdrop-blur transition-all hover:border-gold hover:bg-gold/10 sm:flex"
+                    >
+                      <ChevronLeft className="h-4 w-4" />
+                    </button>
+                    <button
+                      onClick={() => scrollTrack(charmTrackRef, 1)}
+                      data-cursor="link"
+                      aria-label="Next"
+                      className="absolute right-0 top-1/2 z-20 hidden h-9 w-9 -translate-y-1/2 translate-x-3 items-center justify-center rounded-full border border-gold/30 bg-black/70 text-gold backdrop-blur transition-all hover:border-gold hover:bg-gold/10 sm:flex"
+                    >
+                      <ChevronRight className="h-4 w-4" />
+                    </button>
+                    <div
+                      ref={charmTrackRef}
+                      className="hide-scrollbar flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-smooth px-1 pb-2"
+                    >
+                      {CHARMS.map((material) => {
+                        const Icon = CHARM_ICONS[material.render as CharmIconId];
+                        return (
+                          <button
+                            key={material.id}
+                            onClick={() => addMaterial(material)}
+                            disabled={isFull}
+                            data-cursor="link"
+                            className="flex w-[42vw] shrink-0 snap-center flex-col items-center gap-2 rounded-xl border border-gold/15 p-4 transition-all hover:border-gold/50 hover:bg-gold/5 disabled:cursor-not-allowed disabled:opacity-30 sm:w-[160px]"
+                          >
+                            <Icon className="h-9 w-9 text-gold" />
+                            <span className="text-center text-[11px] uppercase tracking-wide text-foreground/90">{material.name}</span>
+                            <span className="text-[11px] text-gold/80">+${material.price}</span>
+                          </button>
+                        );
+                      })}
+                    </div>
                   </div>
                   {isFull && (
                     <p className="mt-4 text-center text-xs text-gold/70">
@@ -343,23 +403,44 @@ export default function DesignStudio() {
                     Step 3 &middot; {STEPS[2].title}
                   </h3>
                   <p className="mb-4 text-xs text-muted-foreground">{STEPS[2].subtitle}</p>
-                  <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-                    {BEADS.map((material) => (
-                      <button
-                        key={material.id}
-                        onClick={() => addMaterial(material)}
-                        disabled={isFull}
-                        data-cursor="link"
-                        className="flex flex-col items-center gap-2 rounded-xl border border-gold/15 p-3 transition-all hover:border-gold/50 hover:bg-gold/5 disabled:cursor-not-allowed disabled:opacity-30"
-                      >
-                        <span
-                          className="h-7 w-7 rounded-full border border-black/30"
-                          style={{ backgroundColor: BEAD_COLORS[material.render as keyof typeof BEAD_COLORS] }}
-                        />
-                        <span className="text-center text-[10px] uppercase tracking-wide text-foreground/90">{material.name}</span>
-                        <span className="text-[10px] text-gold/80">+${material.price}</span>
-                      </button>
-                    ))}
+                  <div className="relative">
+                    <button
+                      onClick={() => scrollTrack(beadTrackRef, -1)}
+                      data-cursor="link"
+                      aria-label="Previous"
+                      className="absolute left-0 top-1/2 z-20 hidden h-9 w-9 -translate-x-3 -translate-y-1/2 items-center justify-center rounded-full border border-gold/30 bg-black/70 text-gold backdrop-blur transition-all hover:border-gold hover:bg-gold/10 sm:flex"
+                    >
+                      <ChevronLeft className="h-4 w-4" />
+                    </button>
+                    <button
+                      onClick={() => scrollTrack(beadTrackRef, 1)}
+                      data-cursor="link"
+                      aria-label="Next"
+                      className="absolute right-0 top-1/2 z-20 hidden h-9 w-9 -translate-y-1/2 translate-x-3 items-center justify-center rounded-full border border-gold/30 bg-black/70 text-gold backdrop-blur transition-all hover:border-gold hover:bg-gold/10 sm:flex"
+                    >
+                      <ChevronRight className="h-4 w-4" />
+                    </button>
+                    <div
+                      ref={beadTrackRef}
+                      className="hide-scrollbar flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-smooth px-1 pb-2"
+                    >
+                      {BEADS.map((material) => (
+                        <button
+                          key={material.id}
+                          onClick={() => addMaterial(material)}
+                          disabled={isFull}
+                          data-cursor="link"
+                          className="flex w-[42vw] shrink-0 snap-center flex-col items-center gap-2 rounded-xl border border-gold/15 p-4 transition-all hover:border-gold/50 hover:bg-gold/5 disabled:cursor-not-allowed disabled:opacity-30 sm:w-[160px]"
+                        >
+                          <span
+                            className="h-9 w-9 rounded-full border border-black/30"
+                            style={{ backgroundColor: BEAD_COLORS[material.render as keyof typeof BEAD_COLORS] }}
+                          />
+                          <span className="text-center text-[11px] uppercase tracking-wide text-foreground/90">{material.name}</span>
+                          <span className="text-[11px] text-gold/80">+${material.price}</span>
+                        </button>
+                      ))}
+                    </div>
                   </div>
                   {isFull && (
                     <p className="mt-4 text-center text-xs text-gold/70">
