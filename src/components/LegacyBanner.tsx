@@ -29,12 +29,11 @@ export default function LegacyBanner() {
                 className="object-contain"
                 style={{
                   maskImage:
-                    "radial-gradient(ellipse 65% 72% at 50% 42%, black 25%, rgba(0,0,0,0.85) 45%, rgba(0,0,0,0.5) 65%, rgba(0,0,0,0.15) 85%, transparent 100%)",
+                    "radial-gradient(ellipse 70% 70% at 50% 50%, black 20%, rgba(0,0,0,0.85) 40%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.15) 82%, transparent 100%)",
                   WebkitMaskImage:
-                    "radial-gradient(ellipse 65% 72% at 50% 42%, black 25%, rgba(0,0,0,0.85) 45%, rgba(0,0,0,0.5) 65%, rgba(0,0,0,0.15) 85%, transparent 100%)",
+                    "radial-gradient(ellipse 70% 70% at 50% 50%, black 20%, rgba(0,0,0,0.85) 40%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.15) 82%, transparent 100%)",
                 }}
               />
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black via-black/60 to-transparent" />
             </div>
           </motion.div>
         </div>
