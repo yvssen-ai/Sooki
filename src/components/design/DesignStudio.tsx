@@ -1,8 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { motion } from "framer-motion";
-import { RotateCcw, Trash2, ShoppingBag, ArrowLeft } from "lucide-react";
+import { motion, Reorder } from "framer-motion";
+import { RotateCcw, Trash2, ShoppingBag, ArrowLeft, GripVertical, X } from "lucide-react";
 import Link from "next/link";
 import NecklaceCanvas from "@/components/design/NecklaceCanvas";
 import MagneticButton from "@/components/MagneticButton";
@@ -91,8 +91,8 @@ export default function DesignStudio() {
             <RevealText text="LEGACY" className="block text-gold" delay={0.15} />
           </h1>
           <p className="mx-auto mt-6 max-w-lg text-balance text-sm leading-relaxed text-muted-foreground sm:text-base">
-            Choose a chain, then click charms and beads to build a necklace that&rsquo;s entirely yours. Click a piece
-            already on the chain to remove it.
+            Choose a chain, then click charms and beads to build a necklace that&rsquo;s entirely yours. Drag a piece
+            in the list below to reorder it, or click it on the chain to remove it.
           </p>
         </motion.div>
 
@@ -114,6 +114,52 @@ export default function DesignStudio() {
               <p className="mt-4 text-center text-xs text-muted-foreground/70">
                 Your necklace is empty — add a charm or bead to begin.
               </p>
+            )}
+
+            {items.length > 0 && (
+              <div className="mt-5 w-full">
+                <p className="mb-2 text-center text-[9px] uppercase tracking-[0.25em] text-muted-foreground/60">
+                  Drag to reorder
+                </p>
+                <Reorder.Group
+                  as="div"
+                  axis="x"
+                  values={items}
+                  onReorder={setItems}
+                  className="flex flex-wrap items-center justify-center gap-2"
+                >
+                  {items.map((item) => {
+                    const isCharm = item.material.kind === "charm";
+                    const CharmIcon = isCharm ? CHARM_ICONS[item.material.render as CharmIconId] : null;
+                    return (
+                      <Reorder.Item
+                        key={item.instanceId}
+                        value={item}
+                        data-cursor="link"
+                        className="flex cursor-grab items-center gap-1.5 rounded-full border border-gold/20 bg-black/40 py-1.5 pl-2 pr-1.5 active:cursor-grabbing"
+                      >
+                        <GripVertical className="h-3 w-3 shrink-0 text-gold/40" />
+                        {CharmIcon ? (
+                          <CharmIcon className="h-4 w-4 shrink-0 text-gold" />
+                        ) : (
+                          <span
+                            className="h-3.5 w-3.5 shrink-0 rounded-full border border-black/30"
+                            style={{ backgroundColor: BEAD_COLORS[item.material.render as keyof typeof BEAD_COLORS] }}
+                          />
+                        )}
+                        <button
+                          onClick={() => removeItem(item.instanceId)}
+                          aria-label={`Remove ${item.material.name}`}
+                          data-cursor="link"
+                          className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors hover:text-gold"
+                        >
+                          <X className="h-3 w-3" />
+                        </button>
+                      </Reorder.Item>
+                    );
+                  })}
+                </Reorder.Group>
+              </div>
             )}
 
             <div className="mt-6 flex w-full items-center justify-between border-t border-gold/10 pt-6">
