@@ -77,16 +77,16 @@ export default function Hero() {
           initial={{ opacity: 0, y: 40, scale: 0.94 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
-          className="relative aspect-[1121/944] w-[78%] max-w-[340px] shrink-0 sm:max-w-[420px] lg:w-[40vw] lg:max-w-[560px]"
+          className="relative aspect-[1376/768] w-[85%] max-w-[380px] shrink-0 sm:max-w-[460px] lg:w-[38vw] lg:max-w-[540px]"
         >
           <div className="absolute inset-0 -z-10 animate-pulse-glow rounded-full bg-gold/25 blur-[90px]" />
           <div className="animate-float-slow relative h-full w-full">
             <Image
-              src="/images/tut-mask.png"
-              alt="Golden pharaoh mask"
+              src="/images/hero-queen.jpg"
+              alt="Egyptian queen holding an ankh"
               fill
               priority
-              sizes="(min-width: 1024px) 40vw, 78vw"
+              sizes="(min-width: 1024px) 46vw, 92vw"
               className="object-contain"
               style={{
                 maskImage:
