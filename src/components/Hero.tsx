@@ -118,10 +118,14 @@ export default function Hero() {
               sizes="(min-width: 1024px) 40vw, 78vw"
               className="object-contain"
               style={{
-                maskImage: "radial-gradient(ellipse 72% 78% at 50% 48%, black 55%, transparent 100%)",
-                WebkitMaskImage: "radial-gradient(ellipse 72% 78% at 50% 48%, black 55%, transparent 100%)",
+                maskImage:
+                  "radial-gradient(ellipse 68% 72% at 50% 42%, black 25%, rgba(0,0,0,0.85) 45%, rgba(0,0,0,0.5) 65%, rgba(0,0,0,0.15) 85%, transparent 100%)",
+                WebkitMaskImage:
+                  "radial-gradient(ellipse 68% 72% at 50% 42%, black 25%, rgba(0,0,0,0.85) 45%, rgba(0,0,0,0.5) 65%, rgba(0,0,0,0.15) 85%, transparent 100%)",
               }}
             />
+            {/* Extra dissolve into the page at the base */}
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black via-black/60 to-transparent" />
           </div>
         </motion.div>
       </div>
