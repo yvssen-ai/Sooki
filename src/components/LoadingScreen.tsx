@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
-import EyeOfHorusLogo from "@/components/icons/EyeOfHorusLogo";
+import Logo from "@/components/Logo";
 
 export default function LoadingScreen() {
   const [loading, setLoading] = useState(true);
@@ -27,7 +27,7 @@ export default function LoadingScreen() {
               transition={{ duration: 0.6, ease: "easeOut" }}
               className="mb-4"
             >
-              <EyeOfHorusLogo className="h-10 w-10 text-gold" />
+              <Logo className="h-10 w-10" />
             </motion.div>
             <motion.h1
               initial={{ opacity: 0, y: 10 }}

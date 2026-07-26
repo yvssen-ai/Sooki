@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Search, User, ShoppingBag } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import EyeOfHorusLogo from "@/components/icons/EyeOfHorusLogo";
+import Logo from "@/components/Logo";
 
 const NAV_LINKS = [
   { name: "Home", href: "#home" },
@@ -41,7 +41,7 @@ export default function Navbar() {
         )}
       >
         <Link href="#home" data-cursor="link" className="flex items-center gap-2.5">
-          <EyeOfHorusLogo className="h-7 w-7 text-gold sm:h-8 sm:w-8" />
+          <Logo className="h-7 w-7 sm:h-8 sm:w-8" />
           <span className="flex flex-col leading-none">
             <span className="font-headline text-lg font-semibold tracking-[0.28em] text-foreground sm:text-xl">
               SOOKI
@@ -101,7 +101,7 @@ export default function Navbar() {
           >
             <div className="mb-16 flex items-center justify-between">
               <span className="flex items-center gap-2 font-headline text-xl font-semibold tracking-[0.28em]">
-                <EyeOfHorusLogo className="h-7 w-7 text-gold" /> SOOKI
+                <Logo className="h-7 w-7" /> SOOKI
               </span>
               <button onClick={() => setIsMobileMenuOpen(false)} aria-label="Close Menu">
                 <X className="h-7 w-7" />
