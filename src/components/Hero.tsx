@@ -2,9 +2,9 @@
 
 import { motion } from "framer-motion";
 import { Play } from "lucide-react";
+import Image from "next/image";
 import MagneticButton from "@/components/MagneticButton";
 import RevealText from "@/components/RevealText";
-import PharaohMask from "@/components/PharaohMask";
 import GoldParticles from "@/components/GoldParticles";
 import {
   EyeOfHorusIcon,
@@ -101,10 +101,29 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Pharaoh mask visual */}
-        <div className="relative aspect-[3/4] w-[62%] max-w-[240px] shrink-0 sm:max-w-[280px] lg:w-[34vw] lg:max-w-[420px]">
-          <PharaohMask className="relative h-full w-full" />
-        </div>
+        {/* Golden mask visual */}
+        <motion.div
+          initial={{ opacity: 0, y: 40, scale: 0.94 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+          className="relative aspect-[1121/944] w-[78%] max-w-[340px] shrink-0 sm:max-w-[420px] lg:w-[40vw] lg:max-w-[560px]"
+        >
+          <div className="absolute inset-0 -z-10 animate-pulse-glow rounded-full bg-gold/25 blur-[90px]" />
+          <div className="animate-float-slow relative h-full w-full">
+            <Image
+              src="/images/tut-mask.png"
+              alt="Golden pharaoh mask"
+              fill
+              priority
+              sizes="(min-width: 1024px) 40vw, 78vw"
+              className="object-contain"
+              style={{
+                maskImage: "radial-gradient(ellipse 72% 78% at 50% 48%, black 55%, transparent 100%)",
+                WebkitMaskImage: "radial-gradient(ellipse 72% 78% at 50% 48%, black 55%, transparent 100%)",
+              }}
+            />
+          </div>
+        </motion.div>
       </div>
 
       {/* Scroll indicator */}
