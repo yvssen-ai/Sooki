@@ -64,7 +64,7 @@ export default function DesignStudio() {
   };
 
   return (
-    <section className="bg-grain relative overflow-hidden bg-black px-5 py-24 sm:px-8 sm:py-28 lg:px-16">
+    <section className="bg-grain relative bg-black px-5 py-24 sm:px-8 sm:py-28 lg:px-16">
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_50%_0%,_hsl(var(--gold)/0.1),_transparent_55%)]" />
 
       <div className="mx-auto max-w-6xl">
@@ -96,14 +96,14 @@ export default function DesignStudio() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-10">
-          {/* Preview */}
+        <div className="flex flex-col gap-12 lg:flex-row lg:items-start lg:gap-10">
+          {/* Preview — sticky so the necklace stays in view while scrolling the materials list */}
           <motion.div
             initial={{ opacity: 0, scale: 0.96 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="relative flex flex-col items-center justify-center rounded-3xl border border-gold/15 bg-gradient-to-b from-[#0e0e0e] to-black p-6 sm:p-10"
+            className="sticky top-20 z-10 flex flex-col items-center justify-center rounded-3xl border border-gold/15 bg-gradient-to-b from-[#0e0e0e] to-black p-6 sm:top-24 sm:p-10 lg:w-[52%] lg:shrink-0"
           >
             <div className="pointer-events-none absolute inset-0 -z-10 rounded-3xl bg-[radial-gradient(circle_at_50%_30%,_hsl(var(--gold)/0.12),_transparent_65%)]" />
             <div className="aspect-[460/300] w-full">
@@ -202,7 +202,7 @@ export default function DesignStudio() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.7, delay: 0.15 }}
-            className="space-y-10"
+            className="space-y-10 lg:min-w-0 lg:flex-1"
           >
             <div>
               <h3 className="mb-4 text-[11px] font-semibold uppercase tracking-[0.25em] text-gold">1. Choose Your Chain</h3>

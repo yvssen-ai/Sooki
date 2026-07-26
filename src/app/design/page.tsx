@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function DesignPage() {
   return (
-    <main className="relative overflow-x-hidden bg-black selection:bg-gold/30">
+    <main className="relative bg-black selection:bg-gold/30">
       <CustomCursor />
       <Navbar />
       <div className="pt-24 sm:pt-28">
