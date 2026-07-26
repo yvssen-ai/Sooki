@@ -1,7 +1,6 @@
 "use client";
 
 import Navbar from "@/components/Navbar";
-import AnnouncementBar from "@/components/AnnouncementBar";
 import Hero from "@/components/Hero";
 import Collection from "@/components/Collection";
 import LegacyBanner from "@/components/LegacyBanner";
@@ -17,7 +16,6 @@ export default function Home() {
       <CustomCursor />
       <LoadingScreen />
 
-      <AnnouncementBar />
       <Navbar />
       <Hero />
       <Collection />

@@ -36,8 +36,8 @@ export default function Navbar() {
     <>
       <header
         className={cn(
-          "fixed top-6 left-0 z-50 flex w-full items-center justify-between px-5 py-4 transition-all duration-500 sm:px-8 lg:px-16",
-          isScrolled ? "top-0 glass shadow-[0_4px_30px_-10px_rgba(0,0,0,0.8)]" : "bg-transparent"
+          "fixed top-0 left-0 z-50 flex w-full items-center justify-between px-5 py-4 transition-all duration-500 sm:px-8 lg:px-16",
+          isScrolled ? "glass shadow-[0_4px_30px_-10px_rgba(0,0,0,0.8)]" : "bg-transparent"
         )}
       >
         <Link href="#home" data-cursor="link" className="flex items-center gap-2.5">
